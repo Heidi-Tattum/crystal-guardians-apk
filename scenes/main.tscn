@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bnjt0b2ttowsy" path="res://scenes/walls.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://b5p2ear570xmh" path="res://scenes/crystal.tscn" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cfej7g505n4da" path="res://scenes/guard.tscn" id="6_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://mwwkp47bx5jv" path="res://scenes/mobile_controls.tscn" id="7_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://cupcs0cyv5xk7" path="res://scenes/npc.tscn" id="7_tipki"]
 [ext_resource type="PackedScene" uid="uid://uu2ogim4hy2v" path="res://scenes/dialogue_ui.tscn" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://fx5xbqglbdjm" path="res://scenes/game_hud.tscn" id="11_eb6dy"]
@@ -1149,6 +1150,10 @@ position = Vector2(99, 104)
 
 [node name="player" parent="." unique_id=1192074681 instance=ExtResource("1_0wfyh")]
 position = Vector2(63, 322)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1561309673]
+
+[node name="MobileControls" parent="CanvasLayer" unique_id=142295059 instance=ExtResource("7_eb6dy")]
 
 [node name="crystals" type="Node" parent="." unique_id=375949646]
 

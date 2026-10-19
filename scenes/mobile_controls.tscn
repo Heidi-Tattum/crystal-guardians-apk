@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cyka5s68ld8ic" path="res://scripts/mobile_controls.gd" id="1_k8ypl"]
 
+[sub_resource type="DrawableTexture2D" id="DrawableTexture2D_5yoks"]
+
+[sub_resource type="DrawableTexture2D" id="DrawableTexture2D_l7u83"]
+
 [node name="MobileControls" type="CanvasLayer" unique_id=142295059]
 script = ExtResource("1_k8ypl")
 
@@ -42,5 +46,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AttackButton" type="TouchScreenButton" parent="Controls" unique_id=1383869961]
+position = Vector2(164, 478.00003)
+scale = Vector2(0.4375, 0.46875)
+texture_normal = SubResource("DrawableTexture2D_5yoks")
+action = "player_attack"
 
 [node name="InteractButton" type="TouchScreenButton" parent="Controls" unique_id=896433475]
+position = Vector2(78, 385)
+scale = Vector2(0.390625, 0.4531248)
+texture_normal = SubResource("DrawableTexture2D_l7u83")
+action = "interact"

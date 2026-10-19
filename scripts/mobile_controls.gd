@@ -10,9 +10,7 @@ var joystick_direction: Vector2 = Vector2.ZERO
 var active_touch_index: int = -1
 
 func _ready() -> void:
-	joystick_knob.position = (
-		joystick_base.size - joystick_knob.size
-	) / 2.0
+	reset_joystick()
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
@@ -28,11 +26,36 @@ func _input(event: InputEvent) -> void:
 		if event.index == active_touch_index:
 			update_joystick(event.position)
 
-func is_inside_joystick(screen_position: Vector2):
-	pass
+# Obtiene el centro global del joystick base
+func get_base_center() -> Vector2:
+	return joystick_base.global_position + joystick_base.size / 2.0
 
-func update_joystick(screen_position: Vector2):
-	pass
+func is_inside_joystick(screen_position: Vector2) -> bool:
+	var center = get_base_center()
+	return screen_position.distance_to(center) <= joystick_radius
+
+func update_joystick(screen_position: Vector2) -> void:
+	var center = get_base_center()
+	var offset = screen_position - center
+	var distance = offset.length()
 	
-func reset_joystick():
-	pass
+	# Limitar el movimiento del knob al radio máximo del joystick
+	if distance > joystick_radius:
+		offset = offset.normalized() * joystick_radius
+		distance = joystick_radius
+	
+	# Posicionar el knob en coordenadas locales respecto a la base
+	var local_center = joystick_base.size / 2.0
+	joystick_knob.position = local_center + offset - (joystick_knob.size / 2.0)
+	
+	# Calcular la dirección con la zona muerta (deadzone)
+	var normalized_dist = distance / joystick_radius
+	if normalized_dist < deadzone:
+		joystick_direction = Vector2.ZERO
+	else:
+		# Normaliza y escala suavemente el vector resultante
+		joystick_direction = offset.normalized() * ((normalized_dist - deadzone) / (1.0 - deadzone))
+
+func reset_joystick() -> void:
+	joystick_direction = Vector2.ZERO
+	joystick_knob.position = (joystick_base.size - joystick_knob.size) / 2.0

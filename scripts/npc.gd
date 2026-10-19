@@ -24,9 +24,9 @@ func interact() -> void:
 	match QuestManager.quest_state:
 		QuestManager.QuestState.NOT_STARTED:
 			var mensajes: Array[String] = [
-				"Guardian, necesito tu ayuda!",
-				"Los enemigos han dispersado los 3 cristales mágicos alrededor de la ciudad",
-				"Recupéralos rápido y tráemelos antes de que se pierdan"
+				"Guardian, i need your help!",
+				"The enemies have scattered the three magic crystals around the city",
+				"Find them quickly and bring them to me before they get lost."
 			]
 			dialogue_ui.show_dialogue(
 				"Han Solo",
@@ -35,8 +35,8 @@ func interact() -> void:
 			QuestManager.start_quest()
 		QuestManager.QuestState.ACTIVE:
 			var mensajes: Array[String] = [
-				"Todavía faltan cristales.",
-				"Solo encontraste %d de %d" % [
+				"There are still crystals missing",
+				"You found only %d of %d" % [
 					QuestManager.collected_crystals,
 					QuestManager.required_crystals
 				]
@@ -47,9 +47,9 @@ func interact() -> void:
 			)
 		QuestManager.QuestState.READY_TO_DELIVER:
 			var mensajes: Array[String] = [
-					"Pefecto!, muchas gracias por ayudarme",
-					"Has recuperado todos los cristales a tiempo.",
-					"Ahora podemos activar el portal."
+					"Perfect! Thank you so much for your help.",
+					"You recovered all the crystals in time.",
+					"Now we can activate the portal."
 				]
 			dialogue_ui.show_dialogue(
 				"Han Solo",
@@ -58,9 +58,9 @@ func interact() -> void:
 			QuestManager.complete_quest()
 		QuestManager.QuestState.COMPLETED:
 			var mensajes: Array[String] = [
-					"Gracias por tu gran ayuda!",
-					"El portal está listo para ser utilizado.",
-					"Buen viaje!"
+					"Thank you so much for your help!",
+					"The portal is ready to use.",
+					"Have a good trip!"
 				]
 			dialogue_ui.show_dialogue(
 				"Han Solo",

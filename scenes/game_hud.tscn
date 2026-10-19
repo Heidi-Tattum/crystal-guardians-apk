@@ -1,6 +1,16 @@
 [gd_scene format=3 uid="uid://fx5xbqglbdjm"]
 
 [ext_resource type="Script" uid="uid://cjloubc5mxxfu" path="res://scripts/game_hud.gd" id="1_jna2d"]
+[ext_resource type="Texture2D" uid="uid://tq4efoq1i6lu" path="res://assets/ui/44_corazones_vida.png" id="2_n64bn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjmhc"]
+bg_color = Color(0.604, 0.416, 0.295, 0.843)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trceg"]
+bg_color = Color(0.7984872, 0.45155168, 0.11979964, 0.69411767)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n64bn"]
+bg_color = Color(0.6773484, 0.37566724, 0.13534606, 0.84313726)
 
 [node name="GameHUD" type="CanvasLayer" unique_id=565920768]
 script = ExtResource("1_jna2d")
@@ -22,6 +32,7 @@ anchor_right = 0.86
 offset_left = 0.27996826
 offset_right = 107.27997
 offset_bottom = 54.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gjmhc")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUDContainer/HealthPanel" unique_id=1804505720]
 layout_mode = 2
@@ -36,6 +47,11 @@ vertical_alignment = 1
 layout_mode = 2
 value = 100.0
 
+[node name="Sprite2D" type="Sprite2D" parent="HUDContainer/HealthPanel" unique_id=1297886252]
+position = Vector2(53.00002, 14.000001)
+scale = Vector2(0.6826347, 1)
+texture = ExtResource("2_n64bn")
+
 [node name="CrystalsPanel" type="PanelContainer" parent="HUDContainer" unique_id=2141054094]
 layout_mode = 1
 anchors_preset = -1
@@ -45,6 +61,7 @@ offset_left = -0.47200394
 offset_top = 1.0
 offset_right = 124.528
 offset_bottom = 54.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_trceg")
 
 [node name="CrystalLabel" type="Label" parent="HUDContainer/CrystalsPanel" unique_id=633748987]
 layout_mode = 2
@@ -60,6 +77,7 @@ anchor_right = 0.22200002
 offset_left = 0.25598145
 offset_right = 638.256
 offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n64bn")
 
 [node name="QuestLabel" type="Label" parent="HUDContainer/QuestPanel" unique_id=1368643307]
 layout_mode = 2

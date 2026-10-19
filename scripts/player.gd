@@ -1,4 +1,3 @@
-
 extends CharacterBody2D
 
 signal health_changed(current: int, maximum: int)
@@ -16,6 +15,8 @@ var attack_timer: float = 0.0
 
 @onready var attack_area: Area2D = $AttackArea
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
+
+@onready var joystick = get_node_or_null("../CanvasLayer/MobileControls")
 
 
 func _ready() -> void:
@@ -41,12 +42,20 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("player_attack"):
 		attack()
 
+	# 1. Conservamos tu código de teclado intacto
 	var direction := Input.get_vector(
 		"move_left",
 		"move_right",
 		"move_up",
-        "move_down"
+		"move_down"
 	)
+
+	# 2. Si el joystick tiene movimiento táctil, lo tomamos en cuenta
+	if joystick and joystick.joystick_direction != Vector2.ZERO:
+		direction = joystick.joystick_direction
+
+	# 3. Limitamos la magnitud máxima a 1.0 para evitar velocidades extra
+	direction = direction.limit_length(1.0)
 
 	velocity = direction * speed
 	move_and_slide()

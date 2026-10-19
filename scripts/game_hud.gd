@@ -12,19 +12,19 @@ func _ready() -> void:
 func update_health(current: int, max: int) -> void:
 	health_bar.max_value = max
 	health_bar.value = current
-	health_label.text = "VIDA: %d/%d" % [current, max]
+	health_label.text = "LIFE: %d/%d" % [current, max]
 
 func update_quest_info() -> void:
-	crystal_label.text = "CRISTALES: %d/%d" % [
+	crystal_label.text = "CRYSTALS: %d/%d" % [
 		QuestManager.collected_crystals,
 		QuestManager.required_crystals
 	]
 	match QuestManager.quest_state:
 		QuestManager.QuestState.NOT_STARTED:
-			quest_label.text = "MISION: Habla con Han Solo"
+			quest_label.text = "MISSION: Talk to Han Solo"
 		QuestManager.QuestState.ACTIVE:
-			quest_label.text = "MISION: Recolectar los cristales"
+			quest_label.text = "MISSION: Collect the crystals"
 		QuestManager.QuestState.READY_TO_DELIVER:
-			quest_label.text = "MISION: Entrega los cristales a Han Solo"
+			quest_label.text = "MISSION: Deliver the crystals to Han Solo"
 		QuestManager.QuestState.COMPLETED:
-			quest_label.text = "MISION COMPLETADA"
+			quest_label.text = "MISSION COMPLETE"
